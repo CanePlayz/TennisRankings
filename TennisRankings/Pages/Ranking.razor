@@ -1,0 +1,44 @@
+﻿@page "/"
+@using TennisRankings
+@inject ATPRankingService ATPRankingService
+
+<PageTitle>Ranking</PageTitle>
+
+
+<h1>ATP Ranking</h1>
+
+@if (players == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Country</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var player in players)
+            {
+                <tr>
+                    <td>@player.Name</td>
+                    <td>@player.Country</td>
+                    <td>@player.Points</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ATPRanking[]? players;
+
+    protected override async Task OnInitializedAsync()
+    {
+        players = await ATPRankingService.GetRankingsAsync();
+    }
+}
