@@ -1,4 +1,4 @@
-namespace TennisRanking.API;
+namespace TennisRankings.TennisRankingModels;
 
 public class TennisRankingLive : TennisRankingBase
 {
