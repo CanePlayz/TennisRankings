@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.33920.267
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisRankings", "TennisRankings\TennisRankings.csproj", "{B4B85298-C841-42F9-8F24-C627D9881D31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisRankings.API", "TennisRankings.API\TennisRankings.API.csproj", "{90FB5EAD-FC81-41DC-B982-4185D8E1B476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisRankings.API", "TennisRankings.API\TennisRankings.API.csproj", "{90FB5EAD-FC81-41DC-B982-4185D8E1B476}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisRankings.Helper", "TennisRankings.Helper\TennisRankings.Helper.csproj", "{1887B4AA-B0DC-4B08-8281-3CA36EA11848}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{90FB5EAD-FC81-41DC-B982-4185D8E1B476}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90FB5EAD-FC81-41DC-B982-4185D8E1B476}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90FB5EAD-FC81-41DC-B982-4185D8E1B476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1887B4AA-B0DC-4B08-8281-3CA36EA11848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1887B4AA-B0DC-4B08-8281-3CA36EA11848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1887B4AA-B0DC-4B08-8281-3CA36EA11848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1887B4AA-B0DC-4B08-8281-3CA36EA11848}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
