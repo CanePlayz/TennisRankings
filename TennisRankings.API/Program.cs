@@ -1,17 +1,9 @@
-using TennisRankings.API;
+using TennisRankings.API.Services;
 
 var builder = WebApplication.CreateSlimBuilder(args);
+builder.Services.AddControllers();
+builder.Services.AddHttpClient<MenOfficialRankingScraper>();
 
 var app = builder.Build();
-
-var sampleTodos = TodoGenerator.GenerateTodos().ToArray();
-
-var todosApi = app.MapGroup("/todos");
-todosApi.MapGet("/", () => sampleTodos);
-todosApi.MapGet("/{id}", (int id) =>
-    sampleTodos.FirstOrDefault(a => a.Id == id) is { } todo
-        ? Results.Ok(todo)
-        : Results.NotFound());
-
+app.MapControllers();
 app.Run();
-

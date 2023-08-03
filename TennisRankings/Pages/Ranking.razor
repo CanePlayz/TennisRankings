@@ -1,6 +1,6 @@
 ﻿@page "/"
 @using TennisRankings
-@inject ATPRankingService ATPRankingService
+@inject MenSingleOfficialService _MenSingleOfficialService
 
 <PageTitle>Ranking</PageTitle>
 
@@ -13,21 +13,31 @@
 }
 else
 {
-    <table class="table">
+    <style>
+        .padded-table {
+            padding: 20px;
+        }
+    </style>
+
+    <table class="table padded-table">
         <thead>
             <tr>
+                <th>Rank</th>
                 <th>Player</th>
-                <th>Country</th>
+                <th>Age</th>
                 <th>Points</th>
+                <th>Points change</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var player in players)
             {
                 <tr>
+                    <td>@player.Rank</td>
                     <td>@player.Name</td>
-                    <td>@player.Country</td>
+                    <td>@player.Age</td>
                     <td>@player.Points</td>
+                    <td>@player.PointsChange</td>
                 </tr>
             }
         </tbody>
@@ -35,10 +45,10 @@ else
 }
 
 @code {
-    private ATPRanking[]? players;
+    private List<TennisRankingOfficial>? players;
 
     protected override async Task OnInitializedAsync()
     {
-        players = await ATPRankingService.GetRankingsAsync();
+        players = await _MenSingleOfficialService.GetRankingsAsync();
     }
 }
