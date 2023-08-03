@@ -1,4 +1,4 @@
-﻿using TennisRankings.TennisRankingModels;
+﻿using TennisRankings.Models;
 
 namespace TennisRankings.Services;
 

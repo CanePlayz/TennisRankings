@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TennisRankings.API.Models;
 using TennisRankings.API.Services;
-using TennisRankings.TennisRankingModels;
 
-namespace TennisRankings.API.Endpoints;
+namespace TennisRankings.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]

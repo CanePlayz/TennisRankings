@@ -1,5 +1,5 @@
 using HtmlAgilityPack;
-using TennisRankings.TennisRankingModels;
+using TennisRankings.API.Models;
 
 namespace TennisRankings.API.Services;
 
