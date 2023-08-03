@@ -13,7 +13,7 @@ public class MenSingleOfficialService
 
     public async Task<List<TennisRankingOfficial>> GetRankingsAsync()
     {
-        var result = await _httpClient.GetFromJsonAsync<List<TennisRankingOfficial>>("http://localhost:5000/mensingleofficial");
+        var result = await _httpClient.GetFromJsonAsync<List<TennisRankingOfficial>>("http://api/mensingleofficial");
         return result ?? new List<TennisRankingOfficial>();
     }
 }
