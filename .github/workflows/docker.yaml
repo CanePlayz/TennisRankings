@@ -38,3 +38,19 @@ jobs:
           file: ./TennisRankings.API/Dockerfile
           push: true
           tags: caneplayz/tennisrankings-api:latest
+
+      - name: Build and push tennisrankings-database
+        uses: docker/build-push-action@v4
+        with:
+          context: ./PostgreSQL
+          file: ./PostgreSQL/Dockerfile
+          push: true
+          tags: caneplayz/tennisrankings-database:latest
+
+      - name: Build and push tennisrankings-nginx
+        uses: docker/build-push-action@v4
+        with:
+          context: ./nginx
+          file: ./nginx/Dockerfile
+          push: true
+          tags: caneplayz/tennisrankings-nginx:latest

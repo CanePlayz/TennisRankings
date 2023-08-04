@@ -10,3 +10,13 @@ services:
       - ASPNETCORE_URLS=http://+:80
     ports:
       - "5000:80"
+  database:
+    image: caneplayz/tennisrankings-database
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=rankings
+    volumes:
+      - postgres-database:/var/lib/postgresql/data
+  nginx:
+    image: caneplayz/tennisrankings-nginx
