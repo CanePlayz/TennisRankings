@@ -16,3 +16,6 @@ services:
       - POSTGRES_DB=rankings-green
     volumes:
       - green-postgres-database:/var/lib/postgresql/data
+
+volumes:
+  green-postgres-database:
