@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  blue-frontend:
+    image: caneplayz/tennisrankings-frontend:latest
+    ports:
+      - "8081:80"
+  blue-api:
+    image: caneplayz/tennisrankings-api:latest
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+  blue-database:
+    image: caneplayz/tennisrankings-database:latest
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=rankings-blue
+    volumes:
+      - blue-postgres-database:/var/lib/postgresql/data

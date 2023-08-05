@@ -2,21 +2,31 @@ version: '3.8'
 services:
   frontend:
     image: caneplayz/tennisrankings-frontend
-    ports:
-      - "8080:80"
-  api:
-    image: caneplayz/tennisrankings-api
-    environment:
-      - ASPNETCORE_URLS=http://+:80
+    build:
+      context: ../TennisRankings
+      dockerfile: Dockerfile
     ports:
       - "5000:80"
+  api:
+    image: caneplayz/tennisrankings-api
+    build:
+      context: ../TennisRankings.API
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    environment:
+      - ASPNETCORE_URLS=http://+:80
   database:
     image: caneplayz/tennisrankings-database
+    build:
+      context: ../PostgreSQL
+      dockerfile: Dockerfile
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=rankings
     volumes:
       - postgres-database:/var/lib/postgresql/data
-  nginx:
-    image: caneplayz/tennisrankings-nginx
+
+volumes:
+  postgres-database:
