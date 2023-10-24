@@ -1,7 +1,10 @@
 version: '3.8'
+
 services:
   green-frontend:
     image: caneplayz/tennisrankings-frontend:latest
+    environment:
+      - ACTIVE_ENVIRONMENT=green
     ports:
       - "8082:80"
   green-api:

@@ -1,7 +1,10 @@
 version: '3.8'
+
 services:
   blue-frontend:
     image: caneplayz/tennisrankings-frontend:latest
+    environment:
+      - ACTIVE_ENVIRONMENT=blue
     ports:
       - "8081:80"
   blue-api:
