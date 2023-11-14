@@ -14,20 +14,7 @@ public class MenSingleOfficialService
     public async Task<List<TennisRankingOfficial>> GetRankingsAsync()
     {
         string activeEnvironment = Environment.GetEnvironmentVariable("ACTIVE_ENVIRONMENT") ?? "blue";
-        string apiUrl;
-
-        if (activeEnvironment == "blue")
-        {
-            apiUrl = "http://blue-api/mensingleofficial";
-        }
-        else if (activeEnvironment == "green")
-        {
-            apiUrl = "http://green-api/mensingleofficial";
-        }
-        else
-        {
-            throw new Exception("Invalid environment configuration.");
-        }
+        string apiUrl = $"http://{activeEnvironment}-api/mensingleofficial";
 
         var result = await _httpClient.GetFromJsonAsync<List<TennisRankingOfficial>>(apiUrl);
         return result ?? new List<TennisRankingOfficial>();

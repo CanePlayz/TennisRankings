@@ -1,23 +1,25 @@
 version: '3.8'
 
 services:
-  frontend:
+  dev-frontend:
     image: caneplayz/tennisrankings-frontend
     build:
       context: ../TennisRankings
       dockerfile: Dockerfile
+    environment:
+      - ACTIVE_ENVIRONMENT=dev
     ports:
-      - "5000:80"
-  api:
+      - "8080:80"
+
+  dev-api:
     image: caneplayz/tennisrankings-api
     build:
       context: ../TennisRankings.API
       dockerfile: Dockerfile
-    ports:
-      - "8000:80"
     environment:
       - ASPNETCORE_URLS=http://+:80
-  database:
+
+  dev-database:
     image: caneplayz/tennisrankings-database
     build:
       context: ../PostgreSQL
