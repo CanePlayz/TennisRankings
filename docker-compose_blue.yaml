@@ -6,12 +6,10 @@ services:
     environment:
       - ACTIVE_ENVIRONMENT=blue
     ports:
-      - "8081:80"
+      - "8081:8080"
 
   blue-api:
     image: caneplayz/tennisrankings-api:latest
-    environment:
-      - ASPNETCORE_URLS=http://+:80
 
   blue-database:
     image: caneplayz/tennisrankings-database:latest

@@ -9,15 +9,13 @@ services:
     environment:
       - ACTIVE_ENVIRONMENT=dev
     ports:
-      - "8080:80"
+      - "8000:8080"
 
   dev-api:
     image: caneplayz/tennisrankings-api
     build:
       context: ../TennisRankings.API
       dockerfile: Dockerfile
-    environment:
-      - ASPNETCORE_URLS=http://+:80
 
   dev-database:
     image: caneplayz/tennisrankings-database

@@ -6,12 +6,10 @@ services:
     environment:
       - ACTIVE_ENVIRONMENT=green
     ports:
-      - "8082:80"
+      - "8082:8080"
 
   green-api:
     image: caneplayz/tennisrankings-api:latest
-    environment:
-      - ASPNETCORE_URLS=http://+:80
 
   green-database:
     image: caneplayz/tennisrankings-database:latest
