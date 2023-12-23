@@ -2,7 +2,7 @@
 BLUE_RUNNING=$(docker-compose -f docker-compose_blue.yaml ps | grep Up)
 
 # Determine which environment is active
-  if [ -n "$BLUE_RUNNING" ]; then
+if [ -n "$BLUE_RUNNING" ]; then
     ACTIVE_COMPOSE="docker-compose_blue.yaml"
     INACTIVE_COMPOSE="docker-compose_green.yaml"
 else
@@ -20,17 +20,15 @@ docker-compose -f $INACTIVE_COMPOSE up -d
 if [ "$INACTIVE_COMPOSE" == "docker-compose_green.yaml" ]; then
     sed -i ' \
         /# BEGIN DEFAULT UPSTREAM/,/# END DEFAULT UPSTREAM/ { \
-            s| \
-            proxy_pass http://blue_upstream;| \
-            proxy_pass http://green_upstream;| \
+            s|proxy_pass http://blue_frontend/|proxy_pass http://green_frontend/| \
         }' /etc/nginx/conf.d/tennisrankings.conf
+elif [ "$INACTIVE_COMPOSE" == "docker-compose_blue.yaml" ]; then
     sed -i ' \
         /# BEGIN DEFAULT UPSTREAM/,/# END DEFAULT UPSTREAM/ { \
-            s| \
-            proxy_pass http://gree_upstream;| \
-            proxy_pass http://blue_upstream;| \
+            s|proxy_pass http://green_frontend/|proxy_pass http://blue_frontend/| \
         }' /etc/nginx/conf.d/tennisrankings.conf
 fi
+
 
 # Reload nginx Configuration
 nginx -s reload

@@ -25,37 +25,30 @@ public class MenOfficialRankingScraper
 
         foreach (var row in rows)
         {
-            // Parse rank change
-            string rankChangeWebsite = row.SelectSingleNode(".//td[2]").InnerText.Trim();
-            string rankChange;
-            if (string.IsNullOrEmpty(rankChangeWebsite))
+            var rankChangeNode = row.SelectSingleNode(".//td[2]");
+            var pointsChangeNode = row.SelectSingleNode(".//td[7]");
+
+            // Check if the necessary nodes exist
+            if (rankChangeNode == null || pointsChangeNode == null)
             {
-                rankChange = "0";
-            }
-            else
-            {
-                rankChange = rankChangeWebsite;
+                continue; // Skip to the next iteration of the loop if nodes are missing
             }
 
+            // Parse rank change
+            string rankChangeWebsite = rankChangeNode.InnerText.Trim();
+            string rankChange = string.IsNullOrEmpty(rankChangeWebsite) ? "0" : rankChangeWebsite;
+
             // Parse points change
-            string pointsChangeWebsite = row.SelectSingleNode(".//td[7]").InnerText.Trim();
-            string pointsChange;
-            if (string.IsNullOrEmpty(pointsChangeWebsite))
-            {
-                pointsChange = "0";
-            }
-            else
-            {
-                pointsChange = pointsChangeWebsite;
-            }
+            string pointsChangeWebsite = pointsChangeNode.InnerText.Trim();
+            string pointsChange = string.IsNullOrEmpty(pointsChangeWebsite) ? "0" : pointsChangeWebsite;
 
             var ranking = new TennisRankingOfficial
             {
                 Name = row.SelectSingleNode(".//td[4]").InnerText.Trim(),
-                Age = int.Parse(row.SelectSingleNode(".//td[5]").InnerText.Trim()),
+                Age = TryParseInt(row.SelectSingleNode(".//td[5]").InnerText.Trim()),
                 // Country = row.SelectSingleNode(".//td[3]").InnerText.Trim(),
-                Points = int.Parse(row.SelectSingleNode(".//td[6]").InnerText.Trim().Replace(",", "")),
-                Rank = int.Parse(row.SelectSingleNode(".//td[1]").InnerText.Trim()),
+                Points = TryParseInt(row.SelectSingleNode(".//td[6]").InnerText.Trim().Replace(",", "")),
+                Rank = TryParseInt(row.SelectSingleNode(".//td[1]").InnerText.Trim()),
                 RankChange = rankChange,
                 PointsChange = pointsChange,
                 // CurrentTournament =
@@ -63,8 +56,18 @@ public class MenOfficialRankingScraper
                 // NextTournament =
             };
             rankings.Add(ranking);
+
+            static int TryParseInt(string input)
+            {
+                if (int.TryParse(input, out int result))
+                {
+                    return result;
+                }
+                return 0; // or any default value you consider appropriate
+            }
         }
 
         return rankings;
     }
+
 }
