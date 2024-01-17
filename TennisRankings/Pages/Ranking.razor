@@ -1,11 +1,9 @@
-﻿@page "/"
+﻿@page "/atp-singles"
 @using TennisRankings
 @inject MenSingleOfficialService _MenSingleOfficialService
+@layout RankingLayout
 
-<PageTitle>Ranking</PageTitle>
-
-
-<h1>ATP Ranking</h1>
+<PageTitle>ATP Ranking</PageTitle>
 
 @if (players == null)
 {
@@ -13,35 +11,31 @@
 }
 else
 {
-    <style>
-        .padded-table {
-            padding: 20px;
-        }
-    </style>
-
-    <table class="table padded-table">
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Player</th>
-                <th>Age</th>
-                <th>Points</th>
-                <th>Points change</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var player in players)
-            {
+    <div class="table-wrapper">
+        <table class="rankings-table">
+            <thead>
                 <tr>
-                    <td>@player.Rank</td>
-                    <td>@player.Name</td>
-                    <td>@player.Age</td>
-                    <td>@player.Points</td>
-                    <td>@player.PointsChange</td>
+                    <th class="rank">Rank</th>
+                    <th class="player">Player</th>
+                    <th class="age">Age</th>
+                    <th class="points">Points</th>
+                    <th class="points-change">Points change</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var player in players)
+                {
+                    <tr>
+                        <td>@player.Rank</td>
+                        <td>@player.Name</td>
+                        <td>@player.Age</td>
+                        <td>@player.Points</td>
+                        <td>@player.PointsChange</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 
 @code {

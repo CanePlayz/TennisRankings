@@ -1,0 +1,23 @@
+.table-wrapper {
+    flex-grow: 1;
+    overflow-y: scroll;
+    height: 80vh;
+}
+
+.rankings-table {
+    margin-left: 40px;
+    margin-right: 40px;
+    width: calc(100% - 80px);
+}
+
+th {
+    position: sticky;
+    top: 0;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}

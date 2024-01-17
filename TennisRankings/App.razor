@@ -1,9 +1,11 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@using Pages
+
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(CustomLayout)" />
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(RankingLayout)" />
     </Found>
     <NotFound>
-        <LayoutView Layout="@typeof(CustomLayout)">
+        <LayoutView Layout="@typeof(RankingLayout)">
             <p role="alert">Sorry, there's nothing at this address.</p>
         </LayoutView>
     </NotFound>
